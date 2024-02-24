@@ -1,0 +1,30 @@
+#DataSource & HikariCP 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://{DB 호스트}:{DB 포트}/{DB명}?serverTimezone=Asia/Seoul
+    username: {DB 계정명}
+    password: {DB 비밀번호}
+    hikari:
+      connection-test-query: SELECT NOW() FROM dual
+      connection-timeout: 30000
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: com.study.jpatransaction.strategy.CustomCamelCaseToSnakeNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: false
+
+logging:
+  level:
+    org:
+      springframework:
+        transaction: trace
+        orm:
+          jpa: debug
