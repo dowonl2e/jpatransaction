@@ -3,6 +3,7 @@ package com.study.jpatransaction;
 import com.study.jpatransaction.board.dto.BoardDto;
 import com.study.jpatransaction.board.entity.Board;
 import com.study.jpatransaction.board.service.BoardService;
+import com.study.jpatransaction.config.DataSourceConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -10,10 +11,12 @@ import jakarta.persistence.EntityTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @SpringBootTest
+@Import(DataSourceConfig.class)
 class JpatransactionApplicationTests {
 
 	@Autowired

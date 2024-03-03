@@ -2,12 +2,16 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://{DB 호스트}:{DB 포트}/{DB명}?serverTimezone=Asia/Seoul
-    username: {DB 계정명}
-    password: {DB 비밀번호}
+    url: jdbc:mysql://{ DB 호스트 }:{ DB 포트 }/{ DB명 }?serverTimezone=Asia/Seoul
+    username: { username }
+    password: { password }
     hikari:
       connection-test-query: SELECT NOW() FROM dual
       connection-timeout: 30000
+      validation-timeout: 30000
+      minimum-idle: 5
+      max-lifetime: 240000
+      maximum-pool-size: 20
   jpa:
     open-in-view: true
     show-sql: true
@@ -28,3 +32,11 @@ logging:
         transaction: trace
         orm:
           jpa: debug
+      hibernate:
+        SQL: info
+    root: info
+    com:
+      zaxxer:
+        hikari:
+          pool:
+            HikariPool: debug
